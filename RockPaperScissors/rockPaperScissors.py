@@ -12,6 +12,7 @@
 #			Keep a record of the score (e.g. Player: 3 / Computer: 6)
 
 from random import randint
+from termcolor import colored
 
 class Player:
 	def __init__(self):
@@ -29,9 +30,9 @@ def game(player1, player2):
 
 	while (player1.choice == None):
 		print("********************************************")
-		humanChoice = raw_input("What is your decision: Rock, Paper or Scissors: ").lower()
+		humanChoice = raw_input(colored("What is your decision: Rock, Paper or Scissors: ",'green')).lower()
 		if (humanChoice not in choices):
-			print("Please spell or enter a correct option.\n")
+			print(colored("Please spell or enter a correct option.\n",'red'))
 		else:
 			player1.choice = humanChoice
 
@@ -40,17 +41,17 @@ def game(player1, player2):
 
 	result = whoWon(player1, player2)
 	if (result == 0):
-		print("Draw")
+		print(colored("Draw",'green',attrs=['bold']))
 	elif (result == 1):
-		print("Human wins")
+		print(colored("Human wins",'green',attrs=['bold']))
 		player1.score += 1
 	elif (result == 2):
-		print("Computer wins")
+		print(colored("Computer wins",'green',attrs=['bold']))
 		player2.score += 1
 	else:
-		print("Error: No result applicable to the match")
+		print(colored("Error: No result applicable to the match",'red',attrs=['bold']))
 
-	print "Player: " + str(player1.score) + " / Computer: " + str(player2.score) + "\n"
+	print (colored("Player: " + str(player1.score) + " / Computer: " + str(player2.score) + "\n",'magenta',attrs=['bold']))
 
 	player1.choice = None
 
@@ -81,15 +82,15 @@ playAgain = True
 while (playAgain == True):
 	game(human, computer)
 
-	request = raw_input("Would you like to play again? (Y/N) : ").lower()
+	request = raw_input(colored("Would you like to play again? (Y/N) : ",'red',attrs=['bold'])).lower()
 	if (request == 'y'):
 		playAgain = True
-		print("Playing again\n")
+		print(colored("Playing again\n",'green',attrs=['bold']))
 	elif (request == 'n'):
 		playAgain = False
-		print("Let's stop\n")
+		print(colored("Let's stop\n",'white',attrs=['bold']))
 	else:
-		print("Didn't understand either Y or N, playing again by default.\n")
+		print(colored("Didn't understand either Y or N, playing again by default.\n",'red',attrs=['bold']))
 	
 
 
